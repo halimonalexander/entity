@@ -1,0 +1,29 @@
+{
+  "name": "halimonalexander/entity",
+  "description": "Entity library",
+  "license": "BSD-3-Clause",
+  "homepage": "https://github.com/halimonalexander/entity",
+  "support": {
+    "issues": "https://github.com/halimonalexander/entity/issues"
+  },
+  "authors": [
+    {
+      "name": "Halimon Alexander",
+      "email": "vvthanatos@gmail.com",
+      "role": "lead"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "halimonalexander/crm": "*",
+    "halimonalexander/pdodecorator": "*",
+    "smarty/smarty": "~3.1"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "HalimonAlexander\\Entity\\": "src/"
+    }
+  }
+}
