@@ -1,5 +1,5 @@
 <?php
-namespace SoulCrm\Libraries\Entities;
+namespace HalimonAlexander\Entity;
 
 use ArrayAccess;
 use RuntimeException;

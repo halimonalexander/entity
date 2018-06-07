@@ -1,5 +1,5 @@
 <?php
-namespace HaliminAlexander\Entity;
+namespace HalimonAlexander\Entity;
 
 use HalimonAlexander\PDODecorator\PDODecorator;
 

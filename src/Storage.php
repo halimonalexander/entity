@@ -1,5 +1,5 @@
 <?php
-namespace HaliminAlexander\Entity;
+namespace HalimonAlexander\Entity;
 
 abstract class Storage
 {
