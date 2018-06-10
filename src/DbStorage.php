@@ -2,14 +2,15 @@
 namespace HalimonAlexander\Entity;
 
 use HalimonAlexander\PDODecorator\PDODecorator;
+use HalimonAlexander\Registry\Registry;
 
 abstract class DbStorage extends Storage
 {
   protected $db;
   
-  function __construct(PDODecorator $db)
+  function __construct()
   {
-    $this->db = $db;
+    $this->db = (Registry::getInstance())->getByClassname(PDODecorator::class);
   }
   
   abstract protected function findSql(array $conditions): string;
