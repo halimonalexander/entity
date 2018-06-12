@@ -18,7 +18,7 @@ abstract class DbCollectionStorage extends AbstractDbStorage
         $this->orderBy = [];
     }
 
-    public function addFilter(string $filter, string $value, bool $exact = true)
+    public function addFilter(?string $filter, ?string $value, bool $exact = true)
     {
         if (empty($filter)) {
             return $this;
@@ -33,7 +33,7 @@ abstract class DbCollectionStorage extends AbstractDbStorage
         return $this;
     }
 
-    public function addGroupBy(string $field)
+    public function addGroupBy(?string $field)
     {
         if (empty($field)) {
             return $this;
@@ -45,7 +45,7 @@ abstract class DbCollectionStorage extends AbstractDbStorage
     }
 
 
-    public function addLimit(int $count, int $offset = 0)
+    public function addLimit(?int $count, ?int $offset = 0)
     {
         if (empty($count)) {
             return $this;
@@ -59,7 +59,7 @@ abstract class DbCollectionStorage extends AbstractDbStorage
         return $this;
     }
 
-    public function addOrderBy(string $field)
+    public function addOrderBy(?string $field)
     {
         if (empty($field)) {
             return $this;
