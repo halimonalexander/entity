@@ -51,7 +51,7 @@ abstract class DbCollectionStorage extends AbstractDbStorage
             return $this;
         }
 
-        $this->limit = "LIMIT {$count}";
+        $this->limit = " LIMIT {$count}";
         if ( !empty($offset) ) {
             $this->limit .= " OFFSET {$offset}";
         }
