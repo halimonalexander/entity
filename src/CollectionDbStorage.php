@@ -1,7 +1,7 @@
 <?php
 namespace HalimonAlexander\Entity;
 
-abstract class DbCollectionStorage extends AbstractDbStorage
+abstract class CollectionDbStorage extends AbstractDbStorage
 {
     protected $filter = [];
     protected $groupBy = [];
