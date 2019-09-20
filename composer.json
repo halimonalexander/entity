@@ -13,9 +13,10 @@
       "role": "lead"
     }
   ],
+  "minimum-stability": "dev",
   "require": {
     "php": "^7.2",
-    "halimonalexander/crm": "*",
+    "halimonalexander/input": "*",
     "halimonalexander/pdodecorator": "*",
     "halimonalexander/registry": "^1.2",
     "smarty/smarty": "~3.1"

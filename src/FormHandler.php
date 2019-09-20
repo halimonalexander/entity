@@ -2,7 +2,7 @@
 namespace HalimonAlexander\Entity;
 
 use Smarty;
-use HalimonAlexander\CRM\Input;
+use HalimonAlexander\Input\Input;
 
 class FormHandler
 {
