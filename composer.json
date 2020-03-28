@@ -16,6 +16,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": "^7.2",
+    "ext-json": "*",
     "halimonalexander/input": "*",
     "halimonalexander/pdodecorator": "*",
     "halimonalexander/registry": "^1.2",
