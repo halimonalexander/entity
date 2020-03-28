@@ -5,7 +5,7 @@ use RuntimeException;
 use HalimonAlexander\PDODecorator\PDODecorator;
 use HalimonAlexander\Registry\Registry;
 
-abstract class AbstractDbStorage extends Storage
+abstract class AbstractDbStorage implements StorageInterface
 {
     /** @var PDODecorator */
     protected $db;
@@ -14,7 +14,8 @@ abstract class AbstractDbStorage extends Storage
     {
         $this->db = (Registry::getInstance())->getByClassname(PDODecorator::class);
 
-        if ($this->db === null)
+        if ($this->db === null) {
             throw new RuntimeException('PDODecorator not set');
+        }
     }
 }
