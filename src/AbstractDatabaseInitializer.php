@@ -7,6 +7,7 @@ use HalimonAlexander\Entity\DatabaseInitializer\{
     Table,
     ForeignKeys\ForeignKeyDTO,
     Indexes\IndexDTO,
+    PrimaryKey\PrimaryKeyDTO,
     Uniques\UniqueDTO
 };
 
@@ -28,9 +29,6 @@ abstract class AbstractDatabaseInitializer
     /** @var string */
     protected $table;
     
-    /** @var string|null */
-    protected $primaryKey = null;
-    
     /** @var Sequence */
     public $sequenceSqlGenerator;
     
@@ -43,6 +41,8 @@ abstract class AbstractDatabaseInitializer
     /** @return IndexDTO[] */
     abstract protected function getIndexes(): array;
     
+    abstract protected function getPrimaryKey(): ?PrimaryKeyDTO;
+    
     /** @return UniqueDTO[] */
     abstract protected function getUniques(): array;
     
@@ -52,7 +52,7 @@ abstract class AbstractDatabaseInitializer
         $this->tableSqlGenerator    = new Table(
             $this->schema,
             $this->prefix . $this->table,
-            $this->primaryKey,
+            $this->getPrimaryKey(),
             $this->getForeignKeys(),
             $this->getIndexes(),
             $this->getUniques()

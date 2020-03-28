@@ -7,13 +7,14 @@ use HalimonAlexander\Entity\DatabaseInitializer\{
     ForeignKeys\ForeignKeyDTO,
     Indexes\Indexes,
     Indexes\IndexDTO,
+    PrimaryKey\PrimaryKey,
+    PrimaryKey\PrimaryKeyDTO,
     Uniques\Uniques,
     Uniques\UniqueDTO
 };
 
 final class Table
 {
-    private $primaryKey;
     private $schema;
     private $table;
     
@@ -23,23 +24,26 @@ final class Table
     /** @var Indexes */
     public $indexesSqlGenerator;
     
+    /** @var PrimaryKey */
+    public $primaryKeySqlGenerator;
+    
     /** @var Uniques */
     public $uniquesSqlGenerator;
     
     /**
      * Table constructor.
      *
-     * @param string          $schema
-     * @param string          $table
-     * @param string|null     $primaryKey
-     * @param ForeignKeyDTO[] $foreignKeys
-     * @param IndexDTO[]      $indexes
-     * @param UniqueDTO[]     $uniques
+     * @param string             $schema
+     * @param string             $table
+     * @param PrimaryKeyDTO|null $primaryKey
+     * @param ForeignKeyDTO[]    $foreignKeys
+     * @param IndexDTO[]         $indexes
+     * @param UniqueDTO[]        $uniques
      */
     public function __construct(
         string $schema,
         string $table,
-        ?string $primaryKey,
+        ?PrimaryKeyDTO $primaryKey,
         array $foreignKeys,
         array $indexes,
         array $uniques
@@ -47,9 +51,9 @@ final class Table
     {
         $this->foreignKeysSqlGenerator = new ForeignKeys($schema, $table, $foreignKeys);
         $this->indexesSqlGenerator = new Indexes($schema, $table, $indexes);
+        $this->primaryKeySqlGenerator = new PrimaryKey($schema, $table, $primaryKey);
         $this->uniquesSqlGenerator = new Uniques($schema, $table, $uniques);
         
-        $this->primaryKey = $primaryKey;
         $this->schema = $schema;
         $this->table  = $table;
     }
@@ -78,20 +82,6 @@ final class Table
             'DROP TABLE IF EXISTS "%s"."%s";',
             $schema,
             $this->table
-        );
-    }
-    
-    public function addPrimaryKey(): ?string
-    {
-        if ($this->primaryKey === null) {
-            return null;
-        }
-        
-        return sprintf(
-            'ALTER TABLE "%s"."%s" ADD PRIMARY KEY ("%s");',
-            $this->schema,
-            $this->table,
-            $this->primaryKey
         );
     }
 }
