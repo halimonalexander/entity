@@ -28,12 +28,12 @@ class Indexes
     }
     
     /**
-     * @return string[]
+     * @param string[] $sqls
+     *
+     * @return void
      */
-    public function addTableIndexes(): array
+    public function addTableIndexes(array &$sqls): void
     {
-        $sqls = [];
-    
         foreach ($this->indexes as $index) {
             $index->column = $index->doubleQuote($index->column);
             if (is_array($index->column)) {
@@ -42,8 +42,6 @@ class Indexes
         
             $sqls[] = !empty($index->name) ? $this->getNamedIndexSql($index) : $this->getUnnamedIndexSql($index);
         }
-        
-        return $sqls;
     }
     
     private function getNamedIndexSql(IndexDTO $index): string

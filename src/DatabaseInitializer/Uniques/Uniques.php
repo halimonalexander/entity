@@ -29,12 +29,12 @@ class Uniques
     }
     
     /**
-     * @return string[]
+     * @param string[] $sqls
+     *
+     * @return void
      */
-    public function addTableUniques(): array
+    public function addTableUniques(array $sqls): void
     {
-        $sqls = [];
-    
         foreach ($this->uniques as $unique) {
             $unique->fields = $unique->doubleQuote($unique->fields);
             if (is_array($unique->fields)) {
@@ -43,8 +43,6 @@ class Uniques
         
             $sqls[] = !empty($unique->name) ? $this->getNamedUniqueSql($unique) : $this->getUnnamedUniqueSql($unique);
         }
-    
-        return $sqls;
     }
     
     private function getNamedUniqueSql(UniqueDTO $unique): string

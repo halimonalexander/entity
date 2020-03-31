@@ -20,10 +20,13 @@ class ForeignKeys
         $this->table = $table;
     }
     
-    public function getTableForeignKeySqls(): array
+    /**
+     * @param string[] $sqls
+     *
+     * @return void
+     */
+    public function addTableForeignKeySqls(array &$sqls): void
     {
-        $sqls = [];
-        
         foreach ($this->foreignKeys as $foreignKey){
             $foreignKey->onUpdate = !empty($foreignKey->onUpdate) ? "ON UPDATE " . $foreignKey->onUpdate : '';
             $foreignKey->onDelete = !empty($foreignKey->onDelete) ? "ON DELETE " . $foreignKey->onDelete : '';
@@ -42,8 +45,6 @@ class ForeignKeys
                 $this->getNamedForeignKeySql($foreignKey) :
                 $this->getUnnamedForeignKeySql($foreignKey);
         }
-        
-        return $sqls;
     }
     
     private function getNamedForeignKeySql(ForeignKeyDTO $foreignKey): string
