@@ -81,6 +81,11 @@ abstract class AbstractDatabaseInitializer
         return $this->schema;
     }
     
+    final public function getSequence(): string
+    {
+        return $this->sequence;
+    }
+    
     final public function getTable(): string
     {
         return $this->prefix . $this->table;

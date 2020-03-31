@@ -20,7 +20,7 @@ class ForeignKeys
         $this->table = $table;
     }
     
-    public function addTableForeignKeySql(): array
+    public function getTableForeignKeySqls(): array
     {
         $sqls = [];
         
