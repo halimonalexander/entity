@@ -38,13 +38,36 @@ class ForeignKeys
                 $foreignKey->referencesField = join(', ', $foreignKey->referencesField);
             }
         
-            $sqls[] = $this->getForeignKeySql($foreignKey);
+            $sqls[] = $foreignKey->name !== null ?
+                $this->getNamedForeignKeySql($foreignKey) :
+                $this->getUnnamedForeignKeySql($foreignKey);
         }
         
         return $sqls;
     }
     
-    private function getForeignKeySql(ForeignKeyDTO $foreignKey): string
+    private function getNamedForeignKeySql(ForeignKeyDTO $foreignKey): string
+    {
+        return sprintf('
+                ALTER TABLE "%s"."%s"
+                ADD CONSTRAINT "%s" FOREIGN KEY (%s)
+                REFERENCES "%s"."%s" (%s)
+                %s %s;
+            ',
+            $this->schema,
+            $this->table,
+            $foreignKey->name,
+            $foreignKey->field,
+            $foreignKey->references->getSchema(),
+            $foreignKey->references->getTable(),
+            $foreignKey->referencesField,
+            $foreignKey->onDelete,
+            $foreignKey->onUpdate
+        );
+    }
+    
+    
+    private function getUnnamedForeignKeySql(ForeignKeyDTO $foreignKey): string
     {
         return sprintf('
                 ALTER TABLE "%s"."%s"
