@@ -1,4 +1,5 @@
 <?php
+
 namespace HalimonAlexander\Entity;
 
 interface CollectionInterface
@@ -9,7 +10,7 @@ interface CollectionInterface
      * @param ValueObject $value
      */
     public function add(ValueObject $value): void;
-    
+
     /**
      * Remove all values from the list
      */

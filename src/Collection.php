@@ -1,4 +1,5 @@
 <?php
+
 namespace HalimonAlexander\Entity;
 
 abstract class Collection implements CollectionInterface, \Iterator, \Countable

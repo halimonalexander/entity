@@ -8,14 +8,14 @@ use RuntimeException;
 abstract class ValueObject implements ArrayAccess
 {
     private $asArray = [];
-    
+
     final public function __toString()
     {
         return json_encode($this->asArray());
     }
-    
+
     abstract public function asArray(): array;
-    
+
     /**
      * @param mixed $offset
      *
@@ -26,10 +26,10 @@ abstract class ValueObject implements ArrayAccess
         if (empty($this->asArray)) {
             $this->asArray = $this->asArray();
         }
-        
+
         return array_key_exists($offset, $this->asArray);
     }
-    
+
     /**
      * @param mixed $offset
      *
@@ -40,10 +40,10 @@ abstract class ValueObject implements ArrayAccess
         if (empty($this->asArray)) {
             $this->asArray = $this->asArray();
         }
-        
+
         return $this->asArray[$offset] ?? null;
     }
-    
+
     /**
      * @param mixed $offset
      * @param mixed $value
@@ -53,7 +53,7 @@ abstract class ValueObject implements ArrayAccess
     {
         throw new RuntimeException('Readonly access');
     }
-    
+
     /**
      * @param mixed $offset
      * @throws RuntimeException

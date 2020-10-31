@@ -1,4 +1,5 @@
 <?php
+
 namespace HalimonAlexander\Entity;
 
 use RuntimeException;

@@ -16,40 +16,40 @@ abstract class AbstractDatabaseInitializer
     public const INT2 = 32767;
     public const INT4 = 2147483647;
     public const INT8 = 9223372036854775807;
-    
+
     /** @var string */
     protected $prefix = '';
-    
+
     /** @var string */
     protected $schema;
-    
+
     /** @var string */
     protected $sequence;
-    
+
     /** @var string */
     protected $table;
-    
+
     /** @var Sequence */
     public $sequenceSqlGenerator;
-    
+
     /** @var Table */
     public $tableSqlGenerator;
-    
+
     /** @return ForeignKeyDTO[] */
     abstract protected function getForeignKeys(): array;
-    
+
     /** @return IndexDTO[] */
     abstract protected function getIndexes(): array;
-    
+
     abstract protected function getPrimaryKey(): ?PrimaryKeyDTO;
-    
+
     /** @return UniqueDTO[] */
     abstract protected function getUniques(): array;
-    
+
     public function __construct()
     {
         $this->sequenceSqlGenerator = new Sequence($this->schema, $this->prefix . $this->sequence);
-        $this->tableSqlGenerator    = new Table(
+        $this->tableSqlGenerator = new Table(
             $this->schema,
             $this->prefix . $this->table,
             $this->getPrimaryKey(),
@@ -58,7 +58,7 @@ abstract class AbstractDatabaseInitializer
             $this->getUniques()
         );
     }
-    
+
     /**
      * @param string $schema
      *
@@ -70,22 +70,22 @@ abstract class AbstractDatabaseInitializer
         if (empty($schema)) {
             throw new \RuntimeException('Schema cannot be empty');
         }
-        
+
         $this->schema = $schema;
-        
+
         return $this;
     }
-    
+
     final public function getSchema(): string
     {
         return $this->schema;
     }
-    
+
     final public function getSequence(): string
     {
         return $this->sequence;
     }
-    
+
     final public function getTable(): string
     {
         return $this->prefix . $this->table;

@@ -1,4 +1,5 @@
 <?php
+
 namespace HalimonAlexander\Entity;
 
 abstract class CollectionDbStorage extends AbstractDbStorage
@@ -52,7 +53,7 @@ abstract class CollectionDbStorage extends AbstractDbStorage
         }
 
         $this->limit = " LIMIT {$count}";
-        if ( !empty($offset) ) {
+        if (!empty($offset)) {
             $this->limit .= " OFFSET {$offset}";
         }
 
