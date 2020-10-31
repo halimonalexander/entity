@@ -4,8 +4,11 @@ namespace HalimonAlexander\Entity;
 
 abstract class Entity
 {
-    protected DbStorage $dbStorage;
-    protected Repository $repository;
+    /** @var DbStorage $dbStorage */
+    protected $dbStorage;
+
+    /** @var Repository $repository */
+    protected $repository;
 
     abstract protected function dbStorage();
 }
