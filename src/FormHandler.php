@@ -12,7 +12,7 @@ class FormHandler
     protected Input $input;
     protected Smarty $smarty;
 
-    public function __construct(Smarty $smarty, ?Input $input)
+    public function __construct(Smarty $smarty, ?Input $input = null)
     {
         $this->input = $input ?? new Input();
         $this->smarty = $smarty;
